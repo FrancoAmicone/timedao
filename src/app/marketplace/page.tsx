@@ -23,6 +23,8 @@ import { formatAddress } from "@/lib/utils";
  * Marketplace Page
  * Browse sellers and create time contracts
  */
+import Link from "next/link";
+
 export default function MarketplacePage() {
   const { isMobile } = useMobile();
   
@@ -99,16 +101,25 @@ export default function MarketplacePage() {
         <div className="space-y-8 sm:space-y-12">
           {/* Header */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="text-4xl sm:text-5xl">🏪</span>
-              <div>
-                <h1 className="text-3xl sm:text-5xl font-bold text-white">
-                  Time Marketplace
-                </h1>
-                <p className="text-sm sm:text-base text-slate-400 mt-1">
-                  Find talented professionals and tokenize their time
-                </p>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl sm:text-5xl">🏪</span>
+                <div>
+                  <h1 className="text-3xl sm:text-5xl font-bold text-white">
+                    Time Marketplace
+                  </h1>
+                  <p className="text-sm sm:text-base text-slate-400 mt-1">
+                    Find talented professionals and tokenize their time
+                  </p>
+                </div>
               </div>
+              
+              {/* Link to components demo */}
+              <Link href="/marketplace-demo">
+                <Button variant="outline" size="sm">
+                  🎨 View Components
+                </Button>
+              </Link>
             </div>
           </div>
           

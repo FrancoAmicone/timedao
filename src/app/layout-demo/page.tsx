@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Container } from "@/components/layout";
 import { Card, CardHeader, CardBody, Button } from "@/components/ui";
 
@@ -20,6 +21,25 @@ export default function LayoutDemoPage() {
             <p className="text-base sm:text-xl text-slate-300">
               Check the Navbar above and Footer below!
             </p>
+            
+            {/* Demo Navigation */}
+            <div className="flex flex-wrap justify-center gap-2 pt-2">
+              <Link href="/demo">
+                <Button variant="outline" size="sm">
+                  ← UI Components
+                </Button>
+              </Link>
+              <Link href="/marketplace-demo">
+                <Button variant="outline" size="sm">
+                  ← Marketplace Components
+                </Button>
+              </Link>
+              <Link href="/">
+                <Button variant="primary" size="sm">
+                  🏠 Home
+                </Button>
+              </Link>
+            </div>
           </div>
           
           {/* Navbar Info */}
@@ -119,12 +139,16 @@ export default function LayoutDemoPage() {
           
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">
-              <a href="/">Back to Home</a>
-            </Button>
-            <Button variant="outline" size="lg">
-              <a href="/demo">View UI Components</a>
-            </Button>
+            <Link href="/">
+              <Button variant="primary" size="lg" fullWidth>
+                Back to Home
+              </Button>
+            </Link>
+            <Link href="/demo">
+              <Button variant="outline" size="lg" fullWidth>
+                View UI Components
+              </Button>
+            </Link>
           </div>
           
           {/* Scroll Hint */}

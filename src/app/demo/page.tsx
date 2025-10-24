@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { 
   Button, 
   Card, 
@@ -55,14 +56,28 @@ export default function DemoPage() {
         {/* Header */}
         <div className="text-center space-y-3 sm:space-y-4">
           <h1 className="text-4xl sm:text-6xl font-bold text-white">
-            TimeDAO Components
+            UI Components
           </h1>
           <p className="text-sm sm:text-base text-slate-300">
-            Mobile-first UI primitives demo
+            Mobile-first UI primitives showcase
           </p>
           <Badge variant="purple" size="md">
             {isMobile ? "📱 Mobile" : "🖥️ Desktop"} - {width}px
           </Badge>
+          
+          {/* Demo Navigation */}
+          <div className="flex flex-wrap justify-center gap-2 pt-2">
+            <Link href="/marketplace-demo">
+              <Button variant="outline" size="sm">
+                → Marketplace Components
+              </Button>
+            </Link>
+            <Link href="/layout-demo">
+              <Button variant="outline" size="sm">
+                → Layout Demo
+              </Button>
+            </Link>
+          </div>
         </div>
         
         {/* Buttons Section */}

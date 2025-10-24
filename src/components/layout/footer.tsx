@@ -106,28 +106,28 @@ export function Footer({ showSocial = true, links }: FooterProps) {
               </h3>
               <ul className="space-y-2">
                 <li>
+                  <Link href="/demo" className="text-sm text-slate-400 hover:text-purple-400 transition-colors inline-block py-1">
+                    UI Components
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/marketplace-demo" className="text-sm text-slate-400 hover:text-purple-400 transition-colors inline-block py-1">
+                    Marketplace Components
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/layout-demo" className="text-sm text-slate-400 hover:text-purple-400 transition-colors inline-block py-1">
+                    Layout Demo
+                  </Link>
+                </li>
+                <li>
                   <Link href="#docs" className="text-sm text-slate-400 hover:text-purple-400 transition-colors inline-block py-1">
                     Documentation
                   </Link>
                 </li>
                 <li>
-                  <Link href="#whitepaper" className="text-sm text-slate-400 hover:text-purple-400 transition-colors inline-block py-1">
-                    Whitepaper
-                  </Link>
-                </li>
-                <li>
                   <Link href="#faq" className="text-sm text-slate-400 hover:text-purple-400 transition-colors inline-block py-1">
                     FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#support" className="text-sm text-slate-400 hover:text-purple-400 transition-colors inline-block py-1">
-                    Support
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#api" className="text-sm text-slate-400 hover:text-purple-400 transition-colors inline-block py-1">
-                    API
                   </Link>
                 </li>
               </ul>
