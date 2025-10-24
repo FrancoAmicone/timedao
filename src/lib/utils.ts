@@ -110,7 +110,13 @@ export function getRelativeTime(date: Date): string {
   if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
   if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`;
   
-  return date.toLocaleDateString();
+  // Use consistent date format to avoid hydration mismatch
+  // Format: "Jan 15, 2024" - always consistent between server and client
+  return date.toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'short', 
+    day: 'numeric' 
+  });
 }
 
 /**
