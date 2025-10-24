@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Button, Badge } from "@/components/ui";
 import { Container } from "./container";
 import { useMobile } from "@/hooks/use-mobile";
+import { useWalletMock } from "@/hooks/use-wallet-mock";
 import { formatAddress } from "@/lib/utils";
-import { MOCK_WALLET } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 // ============================================
@@ -47,7 +47,8 @@ export interface NavbarProps {
 export function Navbar({ showWallet = true, navLinks }: NavbarProps) {
   const { isMobile } = useMobile();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [walletConnected, setWalletConnected] = useState(false);
+  const { isConnected, address, balance, connectWallet, disconnectWallet } = useWalletMock();
+  const [isConnecting, setIsConnecting] = useState(false);
   
   // Default nav links
   const defaultNavLinks = [
@@ -59,9 +60,18 @@ export function Navbar({ showWallet = true, navLinks }: NavbarProps) {
   
   const links = navLinks || defaultNavLinks;
   
-  // Mock wallet connection
-  const handleWalletClick = () => {
-    setWalletConnected(!walletConnected);
+  // Wallet connection handler
+  const handleWalletClick = async () => {
+    if (isConnected) {
+      disconnectWallet();
+    } else {
+      setIsConnecting(true);
+      try {
+        await connectWallet();
+      } finally {
+        setIsConnecting(false);
+      }
+    }
   };
   
   return (
@@ -104,19 +114,21 @@ export function Navbar({ showWallet = true, navLinks }: NavbarProps) {
           {/* Wallet Button (Desktop) */}
           {showWallet && !isMobile && (
             <Button
-              variant={walletConnected ? "secondary" : "primary"}
+              variant={isConnected ? "secondary" : "primary"}
               size="md"
               onClick={handleWalletClick}
+              loading={isConnecting}
+              disabled={isConnecting}
               className="hidden md:flex"
             >
-              {walletConnected ? (
+              {isConnected && address ? (
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                   <span className="font-mono text-sm">
-                    {formatAddress(MOCK_WALLET.defaultAddress, false)}
+                    {formatAddress(address, false)}
                   </span>
                   <span className="text-xs text-slate-400">
-                    {MOCK_WALLET.defaultBalance.toFixed(2)} ETH
+                    {balance.toFixed(2)} ETH
                   </span>
                 </div>
               ) : (
@@ -130,16 +142,18 @@ export function Navbar({ showWallet = true, navLinks }: NavbarProps) {
             {/* Wallet Button (Mobile - Icon only) */}
             {showWallet && (
               <Button
-                variant={walletConnected ? "secondary" : "outline"}
+                variant={isConnected ? "secondary" : "outline"}
                 size="sm"
                 onClick={handleWalletClick}
+                loading={isConnecting}
+                disabled={isConnecting}
                 className="md:hidden"
               >
-                {walletConnected ? (
+                {isConnected && address ? (
                   <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 bg-green-400 rounded-full" />
                     <span className="font-mono text-xs">
-                      {formatAddress(MOCK_WALLET.defaultAddress, true)}
+                      {formatAddress(address, true)}
                     </span>
                   </div>
                 ) : (
