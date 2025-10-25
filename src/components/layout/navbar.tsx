@@ -54,6 +54,7 @@ export function Navbar({ showWallet = true, navLinks }: NavbarProps) {
   const defaultNavLinks = [
     { label: "Home", href: "/" },
     { label: "Marketplace", href: "/marketplace", badge: "Live" },
+    { label: "My Contracts", href: "/marketplace/contracts" },
     { label: "Marriage DAO", href: "/marriage", badge: "Soon" },
     { label: "Components", href: "/demo" },
   ];
