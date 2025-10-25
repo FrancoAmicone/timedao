@@ -13,6 +13,7 @@ import {
   ModalBody,
   ModalFooter,
   Input,
+  Textarea,
 } from "@/components/ui";
 import { useMobile } from "@/hooks/use-mobile";
 import { useContractMock } from "@/hooks/use-contract-mock";
@@ -462,11 +463,8 @@ export default function MyContractsPage() {
               
               {/* Feedback */}
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-slate-400">
-                  Feedback (optional)
-                </label>
-                <Input
-                  as="textarea"
+                <Textarea
+                  label="Feedback (optional)"
                   rows={4}
                   value={feedback}
                   onChange={(e) => setFeedback(e.target.value)}
